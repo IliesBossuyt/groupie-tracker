@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/pageartiste.css">
+  </head>
+  <body>
+    <div class="header">
+        <div class="Logo-contairner">
+                <div class="Logo"> 
+                    <div class="Logo-text"> <p>Tracker</p> </div>
+                </div>
+            </div> 
+            <!--barre de recherche-->
+            <div class="input-search">            
+                <form action="/search" method="post">
+                    <button type="button" class="home-button" onclick="window.location.href='/'">&#8962;</button>
+                    <input type="text" id="recherche" name="recherche" placeholder="Rechercher...">
+                    <button type="submit" class="button" name="button" value="button+">Rechercher</button>
+                </form>
+        </div> 
+    </div>
+    <!--onglet de filtre-->
+    <div class="filter-tags">
+        <div class="filter-tag" onclick="applyFilter('filter1')">Filtre</div>
+        <div class="filter-tag"onclick="applyFilter('filter2')">Filtre</div>
+        <div class="filter-tag"onclick="applyFilter('filter3')">Filtre</div>
+    </div>
+    <div class="bottom-page">
+      <!--onglet de favoris-->
+        <div class="popup-favoris">
+                <div class="titre-favoris">
+                <h1>Favoris</h1>
+                </div>
+        </div>
+      <!--onglet artiste-->
+        <div class="artiste-container">
+          <div class="top-popup-artiste">
+            <div class="artiste">
+              <div class="photo-artiste"> 
+              </div>
+              <div class="name-artiste">
+                <h2>nom de l'Artiste</h2>
+              </div>
+            </div>
+            <div class="favoris-artiste">
+              
+              <button type="submit" class="button-favoris" name="button" value="button+">Ajouter aux favoris</button>
+              <div class="date-de-creation">
+                <h2>Date de création</h2>
+              </div>
+            </div>
+          </div>
+          <div class="bottom-popup-artiste">
+            <div class="date-de-creation-et-lieu-de-concert">
+              <div class="date-de-creation">
+                <h1>Date de premier album</h1>
+              </div>
+              
+              <div class="lieu-de-concert">
+                <h1>Lieu de concert</h1>
+              </div>
+            </div>
+            <div class="menbres">
+              <h1>Membres</h1>
+            </div>
+          </div>
+        </div>
+    </div>
+    <footer class="footer-container">
+      <p>©2024 Tracker</p>
+      <a href="/apropos" class="button">À propos</a>
+    </footer> 
+  </body>
+</html>

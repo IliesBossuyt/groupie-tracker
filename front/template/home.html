@@ -1,1 +1,137 @@
-<h1></h1>
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/home.css">
+  </head>
+  <body>
+    <div class="header">
+      <div class="Logo-contairner">
+        <div class="Logo"> 
+          <div class="Logo-text"> <p>Tracker</p> </div>
+        </div>
+      </div> 
+      <!--barre de recherche-->
+      <div class="input-search">            
+        <form method="post" id="search-form">
+          <button type="button" class="home-button" onclick="window.location.href='/'">&#8962;</button>
+          <input type="text" autofocus id="search-input" name="mot" placeholder="Rechercher...">
+          <button type="submit" class="button" name="button" value="button+">Rechercher</button>
+        </form>
+      </div> 
+    </div>
+    <!--onglet de filtre-->
+    <div class="filter-tags">
+      <form method="post">
+        <div class="filter-tag" name="filtre" value="NameArtiste">Filtre Name Artiste</div>
+        <div class="filter-tag" name="filtre" value="CreationDate">Filtre Creation Date</div>
+        <div class="filter-tag" name="filtre" value="FirstAlbum">Filtre First Album</div>
+        <div class="filter-tag" name="filtre" value="Members">Filtre Members</div>
+      </form>
+    </div>
+    
+    <div class="bottom-page">
+      <!--onglet de favoris-->
+      <div class="popup-favoris">
+        <div class="titre-favoris">
+          <h1>Favoris</h1>
+        </div>
+      </div>
+      <!--onglet de photo-->
+      <div class="photo-container">
+        <div class="cadre-photo">
+          <button class="nav-btn left" onclick="scrollphotos(left)">&lt</button>
+          <div class="photo-slider" id="slider">
+            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(1)"> </div></a>
+            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(2)"> </div></a> 
+            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(3)"> </div></a>
+            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(4)"> </div></a> 
+            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(5)"> </div></a>
+            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(6)"> </div></a>
+            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(7)"> </div></a>
+            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(8)"> </div></a>
+            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(9)"> </div></a>
+            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(10)"> </div></a>
+          </div>
+          <button class="nav-btn next" onclick="scrollphotos(next)">&gt</button>
+        </div>
+        <div class="resultat-recherche">
+            {{ range $index, $value := .ArtistStruct.ID }}
+              Artist ID: {{ $value }}<br>
+              Image: {{ index $.ArtistStruct.Image $index }}<br>
+              Name: {{ index $.ArtistStruct.Name $index }}<br>
+              Members: 
+              {{ range $members := index $.ArtistStruct.Members $value }}
+                {{ $members }},
+              {{ end }}<br>
+              Creation Date: {{ index $.ArtistStruct.CreationDate $index }}<br>
+              First Album: {{ index $.ArtistStruct.FirstAlbum $index }}<br>
+              Locations: 
+              {{ range $locations := index $.ArtistStruct.Location $value }}
+                {{ $locations }},
+              {{ end }}<br>
+              Dates: 
+              {{ range $dates := index $.ArtistStruct.Date $value }}
+                {{ $dates }},
+              {{ end }}<br>
+              Relation: 
+              {{ range $relations := index $.ArtistStruct.Relation $value }}
+                {{ $relations }},
+              {{ end }}<br>
+              <hr>
+            {{ end }}
+          
+            {{ range $index, $value := .LocationStruct.ID }}
+            Location ID: {{ $value }}<br>
+            Locations: 
+            {{ range $locations := index $.LocationStruct.Location $value }}
+              {{ $locations }},
+            {{ end }}<br>
+            <hr>
+          {{ end }}
+          
+            {{ range $index, $value := .DateStruct.ID }}
+            Date ID: {{ $value }}<br>
+            Dates: 
+            {{ range $dates := index $.DateStruct.Dates $value }}
+              {{ $dates }},
+            {{ end }}<br>
+            <hr>
+          {{ end }}
+          
+            {{ range $index, $id := .RelationStruct.ID }}
+              Relation ID: {{ $id }}<br>
+              Dates Location: 
+              {{ with index $.RelationStruct.DatesLocations $id }}
+                {{ range . }}
+                  {{ . }}<br>
+                {{ end }}
+              {{ else }}
+                No data available for this ID.<br>
+              {{ end }}
+              <hr>
+            {{ end }}
+        </div>
+      </div>
+    </div>
+    <footer class="footer-container">
+      <p>©2024 Tracker</p>
+      <a href="/apropos" class="button">À propos</a>
+    </footer> 
+  </body>
+</html>
+
+<script>
+  const form = document.getElementById('search-form');  
+  const inputField = document.getElementById('search-input');
+
+  inputField.addEventListener('input', function() {
+    const searchString = inputField.value.trim();
+    if (searchString !== "" && searchString.length > 0) {
+      // Envoie la requête au backend ici
+      const formData = new FormData(form);
+      fetch('/backend-url', { method: 'POST', body: formData });
+    }
+  });
+
+</script>

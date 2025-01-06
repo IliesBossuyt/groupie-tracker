@@ -4,6 +4,8 @@ import "net/http"
 
 func Run(groupie *Engine) {
 	http.HandleFunc("/", groupie.Handler) // Ici, quand on arrive sur la racine, on appelle la fonction Handler
+	http.HandleFunc("/apropos", groupie.Apropos)
+	http.HandleFunc("/pageartiste", groupie.PageArtiste)
 
 	fs := http.FileServer(http.Dir("front/./static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
