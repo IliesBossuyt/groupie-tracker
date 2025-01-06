@@ -1,0 +1,223 @@
+body {
+  font-family: 'arial', sans-serif;
+  background: radial-gradient(circle,#560261, #7f06b8,#34034b);
+  color: #fff;
+  margin: 0;
+  flex-direction: column; 
+  min-height: 100vh;
+  display: flex;
+
+ 
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px ;
+  
+}
+/* Titre du site */
+.Logo{
+  
+  margin-right: 20px ;
+}
+.Logo {
+  background-color: #fff;
+  color:#8a2be2;
+  font-size: 14px;
+  border: 4px solid #333;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  cursor: pointer;
+}
+
+.input-search {
+  flex: 1;
+  display: flex;
+ 
+  
+}
+/* Style pour le formulaire de recherche */
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+
+.input-search input {
+  width: 35%;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  padding: 0 15px;
+}
+.input-search input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #f5f5f5;
+}
+.home-button{
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor:pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.button[type="submit"] {
+  height: 40px;  /* Même hauteur que les autres éléments */
+  padding: 0 20px;  /* Padding horizontal */
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+.home-button:hover,
+.button[type="submit"]:hover {
+  background-color: #8a2be2;
+}
+.button {
+  padding: 8px 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  margin: 10px;
+}
+
+/* Zone des filtres */
+.filter-tags {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  margin: 15px;
+}
+
+.filter-tag {
+  padding: 10px 20px;
+  background-color: #333;
+  border-radius: 15px;
+  color: white;
+  font-size: 14px;
+  margin-left: 10px
+}
+
+.bottom-page {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin: 10px;
+}
+
+/* Sidebar pour les favoris */
+.popup-favoris {
+  flex: 0.5;
+  background-color: #242424;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  height: auto;
+  margin-right: 10px;
+}
+.titre-favoris {
+  text-align: center;
+}
+/* Zone des photos */
+.photo-container {
+  display:flex;
+  background-color: #242424;
+  border-radius: 10px;
+  flex: 1;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+ 
+  
+}
+.cadre-photo {
+  display: flex;
+  margin: 15px;
+  width: 100%;
+  height: 25%;
+  gap: 50px;
+  padding: 15px;  /* Espace intérieur */
+  border: 3px solid #8a2be2;  /* Bordure violette */
+  border-radius: 10px;  /* Coins arrondis */
+  background-color: #242424; /* Fond sombre */
+  justify-content: center;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+.photo-slider {
+  display: flex;
+  transition: transform 0.3s;
+  overflow: hidden;
+}
+.photo{
+  margin: 10px;
+  width: 150px;
+  height: 150px;
+  border: none;
+  background-color: #7f06b8;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+ 
+}
+.nav-btn-left, .nav-btn-next {
+  position: absolute;
+  background: none;
+  border: none;
+  color: #8a2be2;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.nav-btn-left:hover, .nav-btn-nex:hover {
+  opacity: 1;
+  color: #fff;
+}
+
+.footer-container {
+  background-color: #242424;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+footer {
+  display: flex;
+  background-color: #242424;
+ justify-content: space-between;
+}
+.apropos-button{
+  
+  cursor:pointer;
+}
+p {
+  text-align: center;
+  cursor: pointer;
+}
