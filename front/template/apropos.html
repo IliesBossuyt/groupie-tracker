@@ -6,33 +6,20 @@
   </head>
   <body>
     <div class="header">
-      <div class="Logo-contairner">
-        <div class="Logo"> 
-          <div class="Logo-text"> <p>Tracker</p> </div>
+      <div class="Logo-container">
+        <div class="Logo">
+          <img src="/static/image/logo.png" alt="tracker" class="logo-image" onclick="window.location.href='/'">
         </div>
-      </div> 
+      </div>
       <!--barre de recherche-->
       <div class="input-search">            
-        <form action="/search" method="post">
-          <button type="button" class="home-button" onclick="window.location.href='/'">&#8962;</button>
+        <form action="/" method="post">
+          <button type="button" class="home-button" onclick="window.location.href='/home'">&#8962;</button>
           <input type="text" id="recherche" name="recherche" placeholder="Rechercher...">
-          <button type="submit" class="button" name="button" value="button+">Rechercher</button>
         </form>
       </div> 
     </div>
-    <!--onglet de filtre-->
-    <div class="filter-tags">
-      <div class="filter-tag" onclick="applyFilter('filter1')">Filtre</div>
-      <div class="filter-tag"onclick="applyFilter('filter2')">Filtre</div>
-      <div class="filter-tag"onclick="applyFilter('filter3')">Filtre</div>
-    </div>
     <div class="bottom-page">
-      <!--onglet de favoris-->
-      <div class="popup-favoris">
-        <div class="titre-favoris">
-          <h1>Favoris</h1>
-        </div>
-      </div>
       <!--onglet de photo-->
       <div class="apropos-container">
         <div class="apropos">
@@ -40,14 +27,14 @@
         </div>
         <div class="bottom-popup-apropos">
           <div class="comment">
-            <h3>Comment ça marche ?</h3>
+            <h3>Comment ça marche ? <br><br>Vous pouvez rechercher des artistes à l'aide de filtres. <br>Vous pouvez cliquer sur un artiste pour voir ses informations.</h3>
           </div>
           <div class="nous-contact">
             <div class="nous">
-              <h3>Qui sommes-nous ?</h3>
+              <h3>Qui sommes-nous ? <br><br>Nous sommes des étudiants du campus Ynov à Montpellier</h3>
             </div>
             <div class="contact">
-              <h3>nous contacter</h3>
+              <h3>Nous Contacter :<br><br><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">01 57 64 31 79</a></h3>
             </div>
           </div>
         </div>
@@ -57,5 +44,6 @@
       <p>©2024 Tracker</p>
       <a href="/" class="button">Page d'accueil</a>
     </footer> 
+    <script src="/static/js/favoris.js"></script>
   </body>
 </html>

@@ -3,73 +3,103 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/css/pageartiste.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <title>Page Artiste</title>
   </head>
   <body>
+    <!-- ===============================
+         HEADER
+    ================================ -->
     <div class="header">
-        <div class="Logo-contairner">
-                <div class="Logo"> 
-                    <div class="Logo-text"> <p>Tracker</p> </div>
-                </div>
-            </div> 
-            <!--barre de recherche-->
-            <div class="input-search">            
-                <form action="/search" method="post">
-                    <button type="button" class="home-button" onclick="window.location.href='/'">&#8962;</button>
-                    <input type="text" id="recherche" name="recherche" placeholder="Rechercher...">
-                    <button type="submit" class="button" name="button" value="button+">Rechercher</button>
-                </form>
-        </div> 
+      <div class="logo-container">
+        <div class="logo">
+          <img 
+            src="/static/image/logo.png" 
+            alt="tracker" 
+            class="logo-image" 
+            onclick="window.location.href='/'"
+          >
+        </div>
+      </div>
+
+      <!-- ===============================
+           BARRE DE RECHERCHE
+      ================================ -->
+      <div class="input-search">
+        <form action="/home" method="post">
+          <button 
+            type="submit" 
+            class="home-button" 
+            onclick="window.location.href='/home'"
+          >
+            &#8962;
+          </button>
+          <input 
+            type="text" 
+            autofocus 
+            id="search-input" 
+            name="mot" 
+            placeholder="Rechercher..."
+          >
+        </form>
+      </div>
     </div>
-    <!--onglet de filtre-->
-    <div class="filter-tags">
-        <div class="filter-tag" onclick="applyFilter('filter1')">Filtre</div>
-        <div class="filter-tag"onclick="applyFilter('filter2')">Filtre</div>
-        <div class="filter-tag"onclick="applyFilter('filter3')">Filtre</div>
-    </div>
+
+    <!-- ===============================
+         CONTENU PRINCIPAL
+    ================================ -->
     <div class="bottom-page">
-      <!--onglet de favoris-->
-        <div class="popup-favoris">
-                <div class="titre-favoris">
-                <h1>Favoris</h1>
-                </div>
-        </div>
-      <!--onglet artiste-->
-        <div class="artiste-container">
-          <div class="top-popup-artiste">
-            <div class="artiste">
-              <div class="photo-artiste"> 
-              </div>
-              <div class="name-artiste">
-                <h2>nom de l'Artiste</h2>
-              </div>
-            </div>
-            <div class="favoris-artiste">
-              
-              <button type="submit" class="button-favoris" name="button" value="button+">Ajouter aux favoris</button>
-              <div class="date-de-creation">
-                <h2>Date de création</h2>
-              </div>
+      <!-- Onglet artiste -->
+      <div class="artiste-container">
+        <div class="top-popup-artiste">
+          <div class="artiste">
+            <div class="photo-artiste" id="artist-image"></div>
+
+            <div class="name-artiste" id="artist-name"></div>
+          </div>
+
+          <div class="date-de-creation-membres-container">
+            <div 
+              class="date-de-creation" 
+              id="artist-creation-date"
+            ></div>
+
+            <div class="membres-container" id="artist-members">
+              <div class="membres"></div>
             </div>
           </div>
+        </div>
+
           <div class="bottom-popup-artiste">
-            <div class="date-de-creation-et-lieu-de-concert">
-              <div class="date-de-creation">
-                <h1>Date de premier album</h1>
-              </div>
-              
-              <div class="lieu-de-concert">
-                <h1>Lieu de concert</h1>
-              </div>
+            <div class="premier-album-lieu-de-concert-container">
+              <div 
+                class="premier-album" 
+                id="artist-first-album"
+              ></div>
+              <div 
+                class="lieu-de-concert" 
+                id="artist-dates-locations"
+              ></div>
             </div>
-            <div class="menbres">
-              <h1>Membres</h1>
+            <div class="api-container">
+              <div class="api">
+                <div id="map" class="map"></div>
+              </div>
             </div>
           </div>
-        </div>
+      </div>
     </div>
+
+    <!-- ===============================
+         FOOTER
+    ================================ -->
     <footer class="footer-container">
       <p>©2024 Tracker</p>
       <a href="/apropos" class="button">À propos</a>
-    </footer> 
+    </footer>
+
+    <!-- Script JS -->
+    <script src="../static/js/pageartiste.js"></script>
   </body>
 </html>

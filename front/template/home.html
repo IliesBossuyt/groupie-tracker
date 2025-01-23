@@ -3,135 +3,190 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/css/home.css">
+    <title>Tracker</title>
   </head>
   <body>
+    <!-- ===============================
+         HEADER
+    ================================ -->
     <div class="header">
-      <div class="Logo-contairner">
-        <div class="Logo"> 
-          <div class="Logo-text"> <p>Tracker</p> </div>
-        </div>
-      </div> 
-      <!--barre de recherche-->
-      <div class="input-search">            
-        <form method="post" id="search-form">
-          <button type="button" class="home-button" onclick="window.location.href='/'">&#8962;</button>
-          <input type="text" autofocus id="search-input" name="mot" placeholder="Rechercher...">
-          <button type="submit" class="button" name="button" value="button+">Rechercher</button>
-        </form>
-      </div> 
-    </div>
-    <!--onglet de filtre-->
-    <div class="filter-tags">
-      <form method="post">
-        <div class="filter-tag" name="filtre" value="NameArtiste">Filtre Name Artiste</div>
-        <div class="filter-tag" name="filtre" value="CreationDate">Filtre Creation Date</div>
-        <div class="filter-tag" name="filtre" value="FirstAlbum">Filtre First Album</div>
-        <div class="filter-tag" name="filtre" value="Members">Filtre Members</div>
-      </form>
-    </div>
-    
-    <div class="bottom-page">
-      <!--onglet de favoris-->
-      <div class="popup-favoris">
-        <div class="titre-favoris">
-          <h1>Favoris</h1>
+      <div class="logo-container">
+        <div class="logo">
+          <img 
+            src="/static/image/logo.png" 
+            alt="Tracker" 
+            class="logo-image" 
+            onclick="window.location.href='/'"
+          >
         </div>
       </div>
-      <!--onglet de photo-->
+
+      <!-- ===============================
+           BARRE DE RECHERCHE
+      ================================ -->
+      <div class="input-search">
+        <form method="post" action="/home" id="search-form">
+          <button class="home-button" type="button" onclick="submitHome()">&#8962;</button>
+          <input 
+            type="text" 
+            autofocus 
+            id="search-input" 
+            name="mot" 
+            placeholder="Rechercher..."
+          >
+          <input type="hidden" id="home-field" name="home" value="">
+        </form>
+      </div>
+    </div>
+
+    <!-- ===============================
+         CONTENU PRINCIPAL (BOTTOM PAGE)
+    ================================ -->
+    <div class="bottom-page">
+      <!-- ===============================
+           ONGLET DE FILTRE
+      ================================ -->
+      <div class="popup-filter">
+        <!-- Header -->
+        <div class="filter-header">
+          <div class="filter-title">
+            <h2>Filtres</h2>
+          </div>
+        </div>
+
+        <form id="filter-form" method="post">
+          <!-- Contenu des filtres -->
+          <div class="filter-content">
+            <!-- Filtre A-Z -->
+            <div class="filter-group">
+              <label for="menu">Tri alphabétique</label>
+              <select id="menu" name="menu" class="select-styled">
+                <option value="desactiver">Désactivé</option>
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+              </select>
+            </div>
+
+            <!-- Filtre Date de création -->
+            <div class="filter-group">
+              <label>Date de création</label>
+              <div class="input-group">
+                <input 
+                  type="text" 
+                  id="minCreationDate" 
+                  name="minCreationDate" 
+                  placeholder="Min - YYYY" 
+                  class="input-styled"
+                >
+                <input 
+                  type="text" 
+                  id="maxCreationDate" 
+                  name="maxCreationDate" 
+                  placeholder="Max - YYYY" 
+                  class="input-styled"
+                >
+              </div>
+            </div>
+
+            <!-- Filtre Premier Album -->
+            <div class="filter-group">
+              <label>Premier Album</label>
+              <div class="input-group">
+                <input 
+                  type="text" 
+                  id="minFirstAlbum" 
+                  name="minFirstAlbum" 
+                  placeholder="Min - YYYY" 
+                  class="input-styled"
+                >
+                <input 
+                  type="text" 
+                  id="maxFirstAlbum" 
+                  name="maxFirstAlbum" 
+                  placeholder="Max - YYYY" 
+                  class="input-styled"
+                >
+              </div>
+            </div>
+
+            <!-- Filtre Nombre de membres -->
+            <div class="filter-group">
+              <div class="range-header">
+                <label for="membersRange">Nombre de membres</label>
+                <output id="membersOutput" class="members-output">Désactivé</output>
+              </div>
+              <input 
+                type="range" 
+                id="membersRange" 
+                name="members" 
+                min="0" 
+                max="10" 
+                value="0" 
+                oninput="updateMemberOutput(this.value)"
+                class="range-styled"
+              >
+            </div>
+          </div>
+
+          <!-- Bouton Reset -->
+          <button 
+            type="submit" 
+            class="reset-button" 
+            name="reset" 
+            value="reset"
+          >
+            <svg 
+              class="reset-icon" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2"
+            >
+              <path d="M3 12a9 9 0 1 1 18 0 9 9 0 0 1-18 0z"/>
+              <path d="M3 12h6"/>
+            </svg>
+            Réinitialiser
+          </button>
+        </form>
+      </div>
+
+      <!-- ===============================
+           ONGLET DE PHOTOS
+      ================================ -->
       <div class="photo-container">
         <div class="cadre-photo">
-          <button class="nav-btn left" onclick="scrollphotos(left)">&lt</button>
+          <button class="nav-btn-back" onclick="scrollback()">&lt;</button>
           <div class="photo-slider" id="slider">
-            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(1)"> </div></a>
-            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(2)"> </div></a> 
-            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(3)"> </div></a>
-            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(4)"> </div></a> 
-            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(5)"> </div></a>
-            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(6)"> </div></a>
-            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(7)"> </div></a>
-            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(8)"> </div></a>
-            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(9)"> </div></a>
-            <a href="/pageartiste"><div class="photo"onclick="showPhotoDetails(10)"> </div></a>
+            <!-- génération dynamique -->
+            {{ range .RandomImages }}
+            <a href="/pageartiste?id={{ .ID }}">
+              <div 
+                class="photo" 
+                style="background-image:url('{{ .Image }}')"
+              ></div>
+            </a>
+            {{ end }}
           </div>
-          <button class="nav-btn next" onclick="scrollphotos(next)">&gt</button>
+          <button class="nav-btn-next" onclick="scrollnext()">&gt;</button>
         </div>
-        <div class="resultat-recherche">
-            {{ range $index, $value := .ArtistStruct.ID }}
-              Artist ID: {{ $value }}<br>
-              Image: {{ index $.ArtistStruct.Image $index }}<br>
-              Name: {{ index $.ArtistStruct.Name $index }}<br>
-              Members: 
-              {{ range $members := index $.ArtistStruct.Members $value }}
-                {{ $members }},
-              {{ end }}<br>
-              Creation Date: {{ index $.ArtistStruct.CreationDate $index }}<br>
-              First Album: {{ index $.ArtistStruct.FirstAlbum $index }}<br>
-              Locations: 
-              {{ range $locations := index $.ArtistStruct.Location $value }}
-                {{ $locations }},
-              {{ end }}<br>
-              Dates: 
-              {{ range $dates := index $.ArtistStruct.Date $value }}
-                {{ $dates }},
-              {{ end }}<br>
-              Relation: 
-              {{ range $relations := index $.ArtistStruct.Relation $value }}
-                {{ $relations }},
-              {{ end }}<br>
-              <hr>
-            {{ end }}
-          
-            {{ range $index, $value := .LocationStruct.ID }}
-            Location ID: {{ $value }}<br>
-            Locations: 
-            {{ range $locations := index $.LocationStruct.Location $value }}
-              {{ $locations }},
-            {{ end }}<br>
-            <hr>
-          {{ end }}
-          
-            {{ range $index, $value := .DateStruct.ID }}
-            Date ID: {{ $value }}<br>
-            Dates: 
-            {{ range $dates := index $.DateStruct.Dates $value }}
-              {{ $dates }},
-            {{ end }}<br>
-            <hr>
-          {{ end }}
-          
-            {{ range $index, $id := .RelationStruct.ID }}
-              Relation ID: {{ $id }}<br>
-              Dates Location: 
-              {{ with index $.RelationStruct.DatesLocations $id }}
-                {{ range . }}
-                  {{ . }}<br>
-                {{ end }}
-              {{ else }}
-                No data available for this ID.<br>
-              {{ end }}
-              <hr>
-            {{ end }}
-        </div>
+
+        <!-- Résultats de recherche -->
+        <div 
+          class="resultat-recherche" 
+          id="resultat-recherche"
+        ></div>
       </div>
     </div>
+
+    <!-- ===============================
+         FOOTER
+    ================================ -->
     <footer class="footer-container">
       <p>©2024 Tracker</p>
       <a href="/apropos" class="button">À propos</a>
-    </footer> 
+    </footer>
+
+    <!-- Script JS -->
+    <script src="../static/js/home.js"></script>
   </body>
 </html>
-
-<script>
-  const form = document.getElementById('search-form');  
-  const inputField = document.getElementById('search-input');
-
-  inputField.addEventListener('input', function() {
-    const searchString = inputField.value.trim();
-    if (searchString !== "" && searchString.length > 0) {
-      // Envoie la requête au backend ici
-      const formData = new FormData(form);
-      fetch('/backend-url', { method: 'POST', body: formData });
-    }
-  });
-
-</script>

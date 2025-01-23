@@ -1,43 +1,60 @@
+/* ==============================
+   GLOBAL STYLES
+============================== */
 body {
   font-family: 'arial', sans-serif;
-  background: radial-gradient(circle,#560261, #7f06b8,#34034b);
+  background: url(../image/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: #fff;
   margin: 0;
-  flex-direction: column; 
+  flex-direction: column;
   min-height: 100vh;
   display: flex;
-
- 
 }
+
+p {
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ==============================
+   HEADER
+============================== */
 .header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 20px ;
-  
-}
-/* Titre du site */
-.Logo{
-  
-  margin-right: 20px ;
-}
-.Logo {
-  background-color: #fff;
-  color:#8a2be2;
-  font-size: 14px;
-  border: 4px solid #333;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  cursor: pointer;
+  margin-top: 20px;
 }
 
+.logo-container {
+  border: none;
+  width: 120px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px;
+  margin-right: 20px;
+}
+
+.logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* L'image conserve ses proportions */
+}
+
+/* ==============================
+   BARRE DE RECHERCHE
+============================== */
 .input-search {
   flex: 1;
   display: flex;
- 
-  
 }
+
 /* Style pour le formulaire de recherche */
 form {
   display: flex;
@@ -46,7 +63,6 @@ form {
   width: 100%;
   gap: 10px;
 }
-
 
 .input-search input {
   width: 35%;
@@ -59,11 +75,13 @@ form {
   text-align: center;
   padding: 0 15px;
 }
+
 .input-search input:focus {
   outline: none;
   box-shadow: 0 0 0 2px #f5f5f5;
 }
-.home-button{
+
+.home-button {
   background-color: #333;
   color: #fff;
   border: none;
@@ -71,31 +89,14 @@ form {
   width: 40px;
   height: 40px;
   font-size: 20px;
-  cursor:pointer;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease;
 }
 
-.button[type="submit"] {
-  height: 40px;  /* Même hauteur que les autres éléments */
-  padding: 0 20px;  /* Padding horizontal */
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease;
-}
-.home-button:hover,
-.button[type="submit"]:hover {
-  background-color: #8a2be2;
-}
+/* Boutons génériques */
 .button {
   padding: 8px 15px;
   background-color: #333;
@@ -107,100 +108,332 @@ form {
   margin: 10px;
 }
 
-/* Zone des filtres */
-.filter-tags {
-  display: flex;
+/* Soumission & hover */
+.button[type="submit"] {
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  align-items: center;
   justify-content: center;
-  cursor: pointer;
-  margin: 15px;
+  transition: background-color 0.3s ease;
 }
 
-.filter-tag {
-  padding: 10px 20px;
-  background-color: #333;
-  border-radius: 15px;
-  color: white;
-  font-size: 14px;
-  margin-left: 10px
+.home-button:hover,
+.button[type="submit"]:hover {
+  background-color: #8a2be2;
 }
 
+/* ==============================
+   BOTTOM PAGE (CONTENU)
+============================== */
 .bottom-page {
   display: flex;
   flex-direction: row;
   flex: 1;
   margin: 10px;
+  gap: 10px;
 }
 
-/* Sidebar pour les favoris */
-.popup-favoris {
-  flex: 0.5;
+/* ==============================
+   POPUP FILTRE
+============================== */
+#filter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.popup-filter {
+  
   background-color: #242424;
-  margin-bottom: 0px;
-  border-radius: 10px;
-  height: auto;
-  margin-right: 10px;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  width: 18rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  color: #d1d5db;
+  height: 50vh;
+  gap: 10px;
 }
-.titre-favoris {
-  text-align: center;
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
-/* Zone des photos */
+
+.filter-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-title h2 {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-group label {
+  display: block;
+  color: #d1d5db;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+
+/* Styles communs pour <select> et <input> */
+.select-styled, 
+.input-styled {
+  width: 70%;
+  background: #2d2d2d;
+  border: 1px solid #8a2be2;
+  color: #ff00dd;
+  border-radius: 0.5rem;
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.select-styled:hover, 
+.input-styled:hover {
+  border-color: #a78bfa;
+}
+
+.select-styled:focus, 
+.input-styled:focus {
+  outline: none;
+  border-color: #a78bfa;
+}
+
+/* Groupe d’inputs (Min / Max) */
+.input-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+/* ==============================
+   RANGE (nombre de membres)
+============================== */
+.range-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.members-output {
+  color: #ff00dd;
+  font-size: 0.875rem;
+}
+
+.range-styled {
+  width: 70%;
+  height: 0.5rem;
+  background: #4b5563;
+  border-radius: 9999px;
+  appearance: none;
+  cursor: pointer;
+  margin: 0.5rem 0;
+  box-shadow: 0 4px 8px #000000; 
+}
+
+.range-styled::-webkit-slider-thumb {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background: #a78bfa;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.range-styled::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* ==============================
+   BOUTON RESET
+============================== */
+.reset-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-image: linear-gradient(
+    92.88deg, 
+    #455EB5 9.16%, 
+    #5643CC 43.89%, 
+    #673FD7 64.72%
+  );
+  color: #ffffff;
+  padding: 0.625rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reset-button:hover {
+  background: #404040;
+}
+
+.reset-icon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s;
+}
+
+.reset-button:hover .reset-icon {
+  transform: rotate(180deg);
+}
+
+/* ==============================
+   SECTION PHOTOS
+============================== */
 .photo-container {
-  display:flex;
+  display: flex;
+  flex-direction: column;
   background-color: #242424;
   border-radius: 10px;
   flex: 1;
   align-items: center;
   position: relative;
   overflow: hidden;
-  flex-direction: column;
-  
 }
+
 .cadre-photo {
   display: flex;
   margin: 15px;
   width: 90%;
   height: 25%;
   gap: 50px;
-  padding: 15px;  /* Espace intérieur */
-  border: 3px solid #8a2be2;  /* Bordure violette */
-  border-radius: 10px;  /* Coins arrondis */
-  background-color: #242424; /* Fond sombre */
+  padding: 15px; 
+  border-radius: 10px;  
+  background-color: #242424; 
   justify-content: center;
+  align-items: center;
   overflow: hidden;
   scroll-behavior: smooth;
 }
+
+/* Fusion des définitions .photo-slider */
 .photo-slider {
   display: flex;
   transition: transform 0.3s;
   overflow: hidden;
+  scroll-behavior: smooth;
+  border-color: #8a2be2;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
 }
-.photo{
+
+.photo {
   margin: 10px;
   width: 150px;
   height: 150px;
   border: none;
-  background-color: #7f06b8;
   border-radius: 50%;
   cursor: pointer;
   flex-shrink: 0;
- 
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px #000000; 
+  background-size: cover;    
+  background-position: center; 
 }
-.nav-btn-left, .nav-btn-next {
-  position: absolute;
-  background: none;
-  border: none;
-  color: #8a2be2;
-  font-size: 24px;
+
+/* Boutons de navigation du slider */
+.nav-btn-back,
+.nav-btn-next {
+  background-image: linear-gradient(
+    92.88deg, 
+    #455EB5 9.16%, 
+    #5643CC 43.89%, 
+    #673FD7 64.72%
+  );
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
   cursor: pointer;
-  opacity: 0.8;
-  transition: opacity 0.3s, color 0.3s;
+  flex-shrink: 0;
+  font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 4rem;
+  padding: 0 1.6rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all 0.5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
-.nav-btn-left:hover, .nav-btn-nex:hover {
-  opacity: 1;
-  color: #fff;
+.nav-btn-back:hover,
+.nav-btn-next:hover {
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition-duration: 0.1s;
 }
 
+/* ==============================
+   RÉSULTATS DE RECHERCHE
+============================== */
+.resultat-recherche {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* Cartes artistes (injectées dynamiquement) */
+.artist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px #000000; 
+  padding: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.artist-photo img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #8a2be2;
+}
+
+.artist-nom {
+  width: 85%;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.artist-nom :hover {
+  text-decoration: underline;
+}
+
+/* ==============================
+   FOOTER
+============================== */
 .footer-container {
   background-color: #242424;
   display: flex;
@@ -208,16 +441,24 @@ form {
   align-items: center;
   margin-top: auto;
 }
+
 footer {
   display: flex;
   background-color: #242424;
- justify-content: space-between;
+  justify-content: space-between;
 }
-.apropos-button{
-  
-  cursor:pointer;
+
+
+/* ==============================
+   STYLE DES LIENS
+============================== */
+a:link {
+  background-color: transparent;
+  text-decoration: none;
 }
-p {
-  text-align: center;
-  cursor: pointer;
+
+a:hover {
+  background-color: transparent;
+  text-decoration: none;
 }
+
